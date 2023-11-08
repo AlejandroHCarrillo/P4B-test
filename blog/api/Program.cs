@@ -15,11 +15,12 @@ builder.Services.AddDbContext<BlogContext>(options => {
 
 var app = builder.Build();
 
-using (var scope = app.Services.CreateScope())
-{
-    var context = scope.ServiceProvider.GetRequiredService<BlogContext>();
-    context.Database.Migrate();
-}
+// Solo correr una vez para crear la base de datos limpia
+//using (var scope = app.Services.CreateScope())
+//{
+//    var context = scope.ServiceProvider.GetRequiredService<BlogContext>();
+//    context.Database.Migrate();
+//}
 
     // Configure the HTTP request pipeline.
     if (app.Environment.IsDevelopment())
