@@ -23,16 +23,11 @@ namespace api.Controllers
 
         [HttpGet]
         [Route("find")]
-        public dynamic findPost(string term="") {
-            return Enumerable.Range(1, 5).Select(index => new Post
-            {
-                Id = index,
-                Title = "XXXX",
-                PublishDate = new DateTime(),
-                Content = "Lorem..."
-            })
-            .ToArray();
-
+        public dynamic findPost(string term="") 
+        {
+            return _context.Posts.Where(x=> x.Title.Contains(term) || 
+                                            x.Author.Contains(term) || 
+                                            x.Content.Contains(term) ).ToList();
         }
 
         [HttpGet]
