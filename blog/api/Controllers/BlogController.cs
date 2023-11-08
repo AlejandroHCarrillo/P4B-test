@@ -7,9 +7,6 @@ namespace api.Controllers
     [Route("[controller]")]
     public class BlogController : ControllerBase
     {
-        //private static readonly string[] Summaries = new[]
-        //{ "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching" };
-
         private readonly ILogger<BlogController> _logger;
 
         public BlogController(ILogger<BlogController> logger)
@@ -66,15 +63,36 @@ namespace api.Controllers
         [HttpPut]
         public Post Put(Post post)
         {
+            // Verify the Post Exists
+
             // Update Post
             return post;
         }
 
         [HttpDelete]
-        public bool Delete(int IdPost)
+        public dynamic Delete(int IdPost)
         {
+            // Verify Authorization to Delete it
+            string token = Request.Headers.Where(x => x.Key == "Authorization").FirstOrDefault().Value;
+            if (token != "King") {
+                return new
+                {
+                    success = false,
+                    message = "Not authorized to delete items",
+                    result = IdPost.ToString()
+                };
+            }
+            // Verify the Post Exists
+            Post post = new Post { Id = 9, Author = "yo", Title = "dummy find", Content = "Lorem..." };
+
             // Delete Post
-            return true;
+            return new
+            {
+                success = true,
+                message = "Post deleted",
+                result = post
+            };
+            ;
         }
 
 
