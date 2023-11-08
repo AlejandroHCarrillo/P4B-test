@@ -1,6 +1,7 @@
 using api.Models;
 using EF_DB_Blog;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Hosting;
 using System.Linq;
 
 namespace api.Controllers
@@ -32,29 +33,35 @@ namespace api.Controllers
 
         [HttpGet]
         [Route("getPost")]
-        public Post Get(int IdPost = 0)
-        {
-            return new Post{
-                Id = IdPost,
-                Title = "Dummy Post Found",
-                PublishDate = new DateTime(),
-                Content = "Lorem..."
-            };
-        }
+        public dynamic Get(int IdPost = 0) => _context.Posts.Where(x => x.Id == IdPost).FirstOrDefault();
 
         [HttpPost]
-        public Post Post(Post post)
+        public dynamic Post(Post post)
         {
             // Save or Create Post
+            _context.Add(post);
+            _context.SaveChanges();
             return post;
         }
 
         [HttpPut]
-        public Post Put(Post post)
+        public dynamic Put(Post post)
         {
             // Verify the Post Exists
+            var postFound = _context.Posts.Where(x => x.Id == post.Id).FirstOrDefault();
+            if (postFound == null)
+            {
+                return new
+                {
+                    success = false,
+                    message = "The post do not exists",
+                    result = "Error"
+                };
+            }
 
             // Update Post
+            _context.Update<Post>(post);
+            _context.SaveChanges();
             return post;
         }
 
@@ -72,16 +79,27 @@ namespace api.Controllers
                 };
             }
             // Verify the Post Exists
-            Post post = new Post { Id = 9, Author = "yo", Title = "dummy find", Content = "Lorem..." };
+            var postFound = _context.Posts.Where(x => x.Id == IdPost).FirstOrDefault();
+            if (postFound == null)
+            {
+                return new
+                {
+                    success = false,
+                    message = "The post do not exists",
+                    result = "Error"
+                };
+            }
 
             // Delete Post
+            _context.Remove(postFound);
+            _context.SaveChanges();
+
             return new
             {
                 success = true,
                 message = "Post deleted",
-                result = post
-            };
-            ;
+                result = postFound
+            };            
         }
 
 
