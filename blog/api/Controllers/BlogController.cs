@@ -1,5 +1,7 @@
 using api.Models;
+using EF_DB_Blog;
 using Microsoft.AspNetCore.Mvc;
+using System.Linq;
 
 namespace api.Controllers
 {
@@ -8,24 +10,16 @@ namespace api.Controllers
     public class BlogController : ControllerBase
     {
         private readonly ILogger<BlogController> _logger;
+        private BlogContext _context;
 
-        public BlogController(ILogger<BlogController> logger)
+        public BlogController(BlogContext context, ILogger<BlogController> logger)
         {
             _logger = logger;
+            _context = context;
         }
 
         [HttpGet(Name = "GetPosts")]
-        public IEnumerable<Post> Get()
-        {
-            return Enumerable.Range(1, 5).Select(index => new Post
-            {
-                Id = index,
-                Title = "XXXX",
-                PublishDate = new DateTime(),
-                Content = "Lorem..."
-            })
-            .ToArray();
-        }
+        public dynamic Get() => _context.Posts.ToList();
 
         [HttpGet]
         [Route("find")]
