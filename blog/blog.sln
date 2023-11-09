@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34031.279
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "api", "api\api.csproj", "{82D3263F-C3D5-46C5-AC23-346AA636487E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "api", "api\api.csproj", "{82D3263F-C3D5-46C5-AC23-346AA636487E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EF-DB-Blog", "EF-DB-Blog\EF-DB-Blog.csproj", "{068AC84A-DDBF-4F1A-BFC3-E358EDE09169}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EF-DB-Blog", "EF-DB-Blog\EF-DB-Blog.csproj", "{068AC84A-DDBF-4F1A-BFC3-E358EDE09169}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

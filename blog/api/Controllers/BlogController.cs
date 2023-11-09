@@ -7,7 +7,7 @@ using System.Linq;
 namespace api.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class BlogController : ControllerBase
     {
         private readonly ILogger<BlogController> _logger;
@@ -38,10 +38,21 @@ namespace api.Controllers
         [HttpPost]
         public dynamic Post(Post post)
         {
-            // Save or Create Post
-            _context.Add(post);
-            _context.SaveChanges();
-            return post;
+            try
+            {
+                // Save or Create Post
+                _context.Add<Post>(post);
+                _context.SaveChanges();
+             
+            }
+            catch (Exception e)
+            {
+                _logger.LogError(e.ToString());
+            }
+            //finally
+            //{
+            //}
+                return post;
         }
 
         [HttpPut]
