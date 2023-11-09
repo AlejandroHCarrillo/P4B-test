@@ -1,0 +1,33 @@
+﻿@model Post
+<h1>This is the Post</h1>
+
+<table>
+    <thead>
+    </thead>
+    <tbody>
+        @{ 
+        <tr>
+            <td>Titulo:</td>
+            <td>@Html.DisplayFor(m => m.Title)</td>
+        </tr>
+        <tr>
+            <td>Author:</td>
+            <td>@Html.DisplayFor(m => m.Author)</td>
+        </tr>
+        <tr>
+            <td>Fecha Publicacion:</td>
+            <td>@Html.DisplayFor(m => m.PublishDate)</td>
+        </tr>
+        <tr>
+            <td>Contenido:</td>
+            <td>@Html.DisplayFor(m => m.Content)</td>
+        </tr>
+        }
+    </tbody>
+</table>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id })
+    @Html.ActionLink("Back to List", "Index","Blog")
+</p>
+
+

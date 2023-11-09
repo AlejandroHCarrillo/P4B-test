@@ -1,0 +1,33 @@
+﻿@model List<Post>
+<h1>This is the BLOG!!!</h1>
+
+<table>
+    <thead>
+        <tr>
+            <td>ID</td>
+            <td>Titulo</td>
+            <td>Author</td>
+            <td>Fecha Publicacion</td>
+            <td>Contenido</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var post in Model) {
+        <tr>
+                <td>@Html.DisplayFor(m=>post.Id)</td>
+            <td>@Html.DisplayFor(m=>post.Title)</td>
+                <td>@Html.DisplayFor(m=>post.Author)</td>
+                <td>@Html.DisplayFor(m=>post.PublishDate)</td>
+                <td>@Html.DisplayFor(m=>post.Resume)</td>
+                <td>
+                    @* <a class="nav-link text-dark" asp-area="" asp-controller="Post" asp-action="Index">View post</a> *@
+                    @Html.ActionLink("View Post", "Index","Post", new { id = post.Id})
+                </td>
+        </tr>
+        }
+    </tbody>
+</table>
+
+@Html.ActionLink("New Post", "Create", "Post")
+
+

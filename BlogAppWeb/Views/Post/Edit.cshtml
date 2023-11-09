@@ -1,0 +1,34 @@
+﻿@model Post
+<h1>
+Edit Post
+</h1>
+
+<table>
+    <thead>
+    </thead>
+    <tbody>
+        @{
+            <tr>
+                <td>Titulo:</td>
+                <td>@Html.TextBoxFor(m => m.Title)</td>
+            </tr>
+            <tr>
+                <td>Author:</td>
+                <td>@Html.TextBoxFor(m => m.Author)</td>
+            </tr>
+            <tr>
+                <td>Fecha Publicacion:</td>
+                <td>@Html.TextBoxFor(m => m.PublishDate)</td>
+            </tr>
+            <tr>
+                <td>Contenido:</td>
+                <td>@Html.TextBoxFor(m => m.Content)</td>
+            </tr>
+        }
+    </tbody>
+</table>
+<p>
+    @Html.ActionLink("Back to Post", "Index","Post", new{ id = Model.Id })
+</p>
+
+
