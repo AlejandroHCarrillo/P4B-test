@@ -4,6 +4,7 @@
 <table>
     <thead>
         <tr>
+            <td>ID</td>
             <td>Titulo</td>
             <td>Author</td>
             <td>Fecha Publicacion</td>
@@ -13,11 +14,15 @@
     <tbody>
         @foreach (var post in Model) {
         <tr>
+                <td>@Html.DisplayFor(m=>post.Id)</td>
             <td>@Html.DisplayFor(m=>post.Title)</td>
                 <td>@Html.DisplayFor(m=>post.Author)</td>
                 <td>@Html.DisplayFor(m=>post.PublishDate)</td>
                 <td>@Html.DisplayFor(m=>post.Resume)</td>
-                <td>Show more</td>
+                <td>
+                    @* <a class="nav-link text-dark" asp-area="" asp-controller="Post" asp-action="Index">View post</a> *@
+                    @Html.ActionLink("View Post", "Index","Post", post.Id)
+                </td>
         </tr>
         }
     </tbody>
