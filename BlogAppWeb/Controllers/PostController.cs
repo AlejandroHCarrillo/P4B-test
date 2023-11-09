@@ -20,7 +20,7 @@ namespace BlogAppWeb.Controllers
         public async Task<IActionResult> Index(int id)
         {
             Post post = new Post();
-            var response = await _client.GetAsync(_client.BaseAddress + "/Blog/getPost?IdPost=2");
+            var response = await _client.GetAsync(_client.BaseAddress + "/Blog/getPost?IdPost="+id);
             if (response.IsSuccessStatusCode)
             {
                 string data = response.Content.ReadAsStringAsync().Result;

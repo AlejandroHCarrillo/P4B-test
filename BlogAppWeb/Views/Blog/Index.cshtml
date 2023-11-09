@@ -21,7 +21,7 @@
                 <td>@Html.DisplayFor(m=>post.Resume)</td>
                 <td>
                     @* <a class="nav-link text-dark" asp-area="" asp-controller="Post" asp-action="Index">View post</a> *@
-                    @Html.ActionLink("View Post", "Index","Post", post.Id)
+                    @Html.ActionLink("View Post", "Index","Post", new { id = post.Id})
                 </td>
         </tr>
         }
