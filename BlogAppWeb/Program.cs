@@ -4,6 +4,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
+builder.Configuration.GetConnectionString("BlogConnection");
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())

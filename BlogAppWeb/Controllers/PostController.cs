@@ -58,9 +58,18 @@ namespace BlogAppWeb.Controllers
         }
 
         // GET: PostController/Edit/5
-        public ActionResult Edit(int id)
+        public async Task<IActionResult> Edit(int id)
+        //public ActionResult Edit(int id)
         {
-            return View();
+            Post post = new Post();
+            var response = await _client.GetAsync(_client.BaseAddress + "/Blog/getPost?IdPost=" + id);
+            if (response.IsSuccessStatusCode)
+            {
+                string data = response.Content.ReadAsStringAsync().Result;
+                post = JsonConvert.DeserializeObject<Post>(data);
+            }
+
+            return View(post);
         }
 
         // POST: PostController/Edit/5
