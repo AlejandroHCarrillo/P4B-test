@@ -36,12 +36,12 @@ namespace api.Controllers
         public dynamic Get(int IdPost = 0) => _context.Posts.Where(x => x.Id == IdPost).FirstOrDefault();
 
         [HttpPost]
-        public dynamic Post(Post post)
+        public dynamic Post(EF_DB_Blog.Post post)
         {
             try
             {
                 // Save or Create Post
-                _context.Add<Post>(post);
+                _context.Add(post);
                 _context.SaveChanges();
              
             }
@@ -56,7 +56,7 @@ namespace api.Controllers
         }
 
         [HttpPut]
-        public dynamic Put(Post post)
+        public dynamic Put(EF_DB_Blog.Post post)
         {
             // Verify the Post Exists
             var postFound = _context.Posts.Where(x => x.Id == post.Id).FirstOrDefault();
@@ -71,7 +71,7 @@ namespace api.Controllers
             }
 
             // Update Post
-            _context.Update<Post>(post);
+            _context.Update<EF_DB_Blog.Post>(post);
             _context.SaveChanges();
             return post;
         }
