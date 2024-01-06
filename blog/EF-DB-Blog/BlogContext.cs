@@ -1,5 +1,4 @@
-﻿using api.Models;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 
 namespace EF_DB_Blog
 {
